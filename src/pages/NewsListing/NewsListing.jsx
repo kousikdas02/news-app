@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Container, Row } from "react-bootstrap";
+import { Button, Container, Row } from "react-bootstrap";
 import "./NewsListing.scss"
 
 const NewsListing = () => {
@@ -21,12 +21,17 @@ const NewsListing = () => {
   }, []);
 
   console.log(news);
+  const newsPerRow = 9;
+  const [loadMoreNews, setloadMoreNews] = useState(newsPerRow);
+  const handleMoreImage = () => {
+    setloadMoreNews(loadMoreNews + newsPerRow);
+  };
 
   return (
     <>
       <Container>
         <Row>
-          {news.map((newsData, index) => {
+          {news?.slice(0, loadMoreNews)?.map((newsData, index) => {
             const [date, time] = newsData.publishedAt.split("T")
             const placeholderImage = "http://via.placeholder.com/640x360"
             return (
@@ -47,7 +52,7 @@ const NewsListing = () => {
                         <p className="text-muted">Time:{time}</p>
                       </div>
                       <h5 className="card-title">
-                        {newsData.title.slice(0, 40)}...
+                        {newsData.title.slice(0, 35)}...
                       </h5>
                       <p className="card-text">
                         {newsData.description &&
@@ -63,6 +68,13 @@ const NewsListing = () => {
               </>
             );
           })}
+          {
+            loadMoreNews < news.length && (
+              <Button className='mt-4 loadMore_btn' onClick={handleMoreImage}>
+                                Load more
+                            </Button>
+            )
+          }
         </Row>
       </Container>
     </>
