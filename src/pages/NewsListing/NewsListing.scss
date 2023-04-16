@@ -1,0 +1,17 @@
+.authorName{
+    display: block;
+    width: 100%;
+}
+
+.cardInfo{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.card-wrapper{
+    img{
+        height: 300px;
+        object-fit: cover;
+    }
+}
