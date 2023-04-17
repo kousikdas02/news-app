@@ -25,3 +25,12 @@
     max-width: 200px;
     margin: 0 auto;
 }
+
+.loader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vh;
+    height: 100vh !important;
+    margin: auto;
+}
